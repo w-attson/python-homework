@@ -14,7 +14,6 @@ with open(budget_data_path, "r") as csvfile:
     
     # Read the header row
     budget_header = next(budget_reader)
-    #print(budget_header)
        
     # Initialise variables
     total_months = 0
