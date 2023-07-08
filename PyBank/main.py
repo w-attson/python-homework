@@ -7,20 +7,14 @@ budget_data_path = Path("./budget_data.csv")
 
 budget_records = []
  
-# Read CSV file
+# Read in the CSV file
 with open(budget_data_path, "r") as csvfile:
     budget_reader = csv.reader(csvfile, delimiter = ",")
     
     # Read the header row
     budget_header = next(budget_reader)
     #print(budget_header)
-    
-    # Append the column 'Average' to the header
-    budget_header.append("Average Change")
-    
-    # Append the header to the list of sales
-    budget_records.append(budget_header)
-    
+       
     # Initialise variables
     total_months = 0
     total_revenue = 0
