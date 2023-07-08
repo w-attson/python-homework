@@ -2,9 +2,10 @@ import csv
 import numpy as np
 from pathlib import Path
 
-# File path
+# Path to collect data from the Resources folder
 budget_data_path = Path("./budget_data.csv")
 
+# Initialise budget records
 budget_records = []
  
 # Read in the CSV file
