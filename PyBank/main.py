@@ -5,7 +5,6 @@ from pathlib import Path
 # File path
 budget_data_path = Path("./budget_data.csv")
 
-# Initial list
 budget_records = []
  
 # Read CSV file
@@ -14,11 +13,12 @@ with open(budget_data_path, "r") as csvfile:
     
     # Read the header row
     budget_header = next(budget_reader)
+    #print(budget_header)
     
-    # Append the column 'Average Change' to the header
+    # Append the column 'Average' to the header
     budget_header.append("Average Change")
     
-    # Append the header to the list of budget records
+    # Append the header to the list of sales
     budget_records.append(budget_header)
     
     # Initialise variables
@@ -42,12 +42,6 @@ with open(budget_data_path, "r") as csvfile:
         previous_month = int(row[1])
         delta_list += [monthly_change]
         
-        # Append the average change to row
-        row.append(monthly_change)
-        
-        # Append the row to budget records
-        budget_records.append(row)
-        
         # Calculate the greatest increase
         if monthly_change > greatest_increase:
             greatest_increase = monthly_change
@@ -57,7 +51,6 @@ with open(budget_data_path, "r") as csvfile:
         if monthly_change < greatest_decrease:
             greatest_decrease = monthly_change
             greatest_decrease_month = row[0]
-        
 
 average_delta = (np.mean(delta_list[1:]))
 average_delta = round(average_delta,2)
