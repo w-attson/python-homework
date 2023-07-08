@@ -2,20 +2,25 @@ import csv
 import numpy as np
 from pathlib import Path
 
-# Path to collect data from the Resources folder
+# File path
 budget_data_path = Path("./budget_data.csv")
 
-# Initialise budget records
 budget_records = []
  
-# Read in the CSV file
+# Read CSV file
 with open(budget_data_path, "r") as csvfile:
     budget_reader = csv.reader(csvfile, delimiter = ",")
     
     # Read the header row
     budget_header = next(budget_reader)
     #print(budget_header)
-       
+    
+    # Append the column 'Average' to the header
+    budget_header.append("Average Change")
+    
+    # Append the header to the list of sales
+    budget_records.append(budget_header)
+    
     # Initialise variables
     total_months = 0
     total_revenue = 0
@@ -25,7 +30,7 @@ with open(budget_data_path, "r") as csvfile:
     greatest_increase = 0
     delta_list = []
     
-    # Read each row of data following header 
+    # Read each row 
     for row in budget_reader:
 
         # Calculate the totals
