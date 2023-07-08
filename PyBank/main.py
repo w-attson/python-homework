@@ -36,21 +36,25 @@ with open(budget_data_path, "r") as csvfile:
         # Calculate the totals
         total_months += 1
         total_revenue += int(row[1])
+        
+        # Assign variables
+        date = row[0]
+        pnl = int(row[1])
 
         # Calculate the average change
-        monthly_change = int(row[1]) - previous_month
-        previous_month = int(row[1])
+        monthly_change = pnl - previous_month
+        previous_month = pnl
         delta_list += [monthly_change]
         
         # Calculate the greatest increase
         if monthly_change > greatest_increase:
             greatest_increase = monthly_change
-            greatest_increase_month = row[0]
+            greatest_increase_month = date
         
         # Calculate the greatest decrease
         if monthly_change < greatest_decrease:
             greatest_decrease = monthly_change
-            greatest_decrease_month = row[0]
+            greatest_decrease_month = date
 
 average_delta = (np.mean(delta_list[1:]))
 average_delta = round(average_delta,2)
